@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" /> <!-- Підключення зовнішнього стилю -->
+    <title>Document</title>
+</head>
+<body>
+    <!-- Завдання 2: Input з можливістю обміну текстом -->
+    <h1>Завдання 2</h1>
+    <div class="container">
+        <label for="input1">Input 1:</label>
+        <input type="text" id="input1" placeholder="Enter text here">
+        <br>
+        <label for="input2">Input 2:</label>
+        <input type="text" id="input2" placeholder="Enter text here">
+        <br>
+        <button id="swapButton">SWAP ME</button>
+    </div>
+
+    <!-- Завдання 4: Змінюйте розмір квадрата -->
+    <h1>Завдання 4</h1>
+    <h1>Змінюйте розмір квадрата</h1>
+    <div id="square"></div>
+    <br>
+    <button id="shrinkButton">Зменшити</button>
+    <button id="expandButton">Збільшити</button>
+
+    <!-- Завдання 6: Подвоїти значення в списку -->
+    <h1 class="taskTitle">Завдання 6</h1>
+    <h1>Подвоїти значення в списку</h1>
+    <ul id="numberList">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <button id="doubleButton">Подвоїти</button>
+
+    <!-- Завдання 7: Лічильник категорій -->
+    <h1>Завдання 7</h1>
+    <ul id="categories">
+        <li class="item">
+          <h2>Animals</h2>
+          <ul>
+            <li>Cat</li>
+            <li>Hamster</li>
+            <li>Horse</li>
+            <li>Parrot</li>
+          </ul>
+        </li>
+        <li class="item">
+          <h2>Products</h2>
+          <ul>
+            <li>Bread</li>
+            <li>Prasley</li>
+            <li>Cheese</li>
+          </ul>
+        </li>
+        <li class="item">
+          <h2>Technologies</h2>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>Node.js</li>
+          </ul>
+        </li>
+      </ul>
+      <button id="button7">Count</button>
+
+      <!-- Завдання 8: Логін форма -->
+      <h1>Завдання 8</h1>
+      <form class="login-form">
+        <label>
+          Email
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" />
+        </label>
+        <button type="submit">Log in</button>
+      </form>
+
+      <!-- Завдання 9: Зміна кольору фону -->
+      <h1>Завдання 9</h1>
+      <div class="widget">
+        <p>Background color: <span class="color">-</span></p>
+        <button type="button" class="change-color">Change color</button>
+      </div>
+
+      <!-- Завдання 10: Створення і знищення блоків -->
+      <h1>Завдання 10</h1>
+      <div id="controls">
+        <input type="number" class="task10" min="1" max="100" step="1" />
+        <button type="button" data-create>Create</button>
+        <button type="button" data-destroy>Destroy</button>
+      </div>
+      
+      <div id="boxes"></div>
+</body>
+<script>
+// Завдання 2 - обмін значеннями між двома інпутами
+const swapButton = document.getElementById('swapButton');
+const input1 = document.getElementById('input1');
+const input2 = document.getElementById('input2');
+
+// Обробник події для кнопки "SWAP ME"
+swapButton.addEventListener('click', () => {
+    const temp = input1.value;  // Зберігаємо значення першого інпуту
+    input1.value = input2.value; // Переміщаємо значення з другого інпуту в перший
+    input2.value = temp; // Встановлюємо збережене значення у другий інпут
+});
+
+// Завдання 4 - зміна розміру квадрата
+window.onload = function() {
+    const square = document.getElementById("square");
+    const shrinkButton = document.getElementById("shrinkButton");
+    const expandButton = document.getElementById("expandButton");
+
+    // Зменшення розміру квадрата
+    shrinkButton.addEventListener("click", function() {
+        let currentSize = parseInt(window.getComputedStyle(square).width); // Отримуємо поточний розмір
+        square.style.width = (currentSize - 15) + "px";  // Зменшуємо ширину
+        square.style.height = (currentSize - 15) + "px"; // Зменшуємо висоту
+    });
+
+    // Збільшення розміру квадрата
+    expandButton.addEventListener("click", function() {
+        let currentSize = parseInt(window.getComputedStyle(square).width); // Отримуємо поточний розмір
+        square.style.width = (currentSize + 15) + "px";  // Збільшуємо ширину
+        square.style.height = (currentSize + 15) + "px"; // Збільшуємо висоту
+    });
+};
+
+// Завдання 6 - подвоєння значень у списку
+const doubleButton = document.getElementById('doubleButton');
+const numberList = document.getElementById('numberList');
+
+// Обробник події для кнопки "Подвоїти"
+doubleButton.addEventListener('click', function() {
+    const listItems = numberList.getElementsByTagName('li');  // Отримуємо всі елементи списку
+
+    // Перебираємо кожен елемент списку
+    for (let i = 0; i < listItems.length; i++) {
+        let currentValue = parseInt(listItems[i].textContent);  // Отримуємо поточне значення
+        listItems[i].textContent = currentValue * 2;  // Подвоюємо значення
+    }
+});
+
+// Завдання 7 - підрахунок кількості категорій та елементів
+const categories = document.querySelectorAll(".item");
+const button7 = document.querySelector("#button7");
+
+button7.addEventListener('click', () => {
+    console.log("Number of categories: " + categories.length);  // Виводимо кількість категорій
+
+    categories.forEach(element => {
+        console.log("Category: " + element.querySelector("h2").textContent);  // Виводимо назву категорії
+        console.log("Elements: " + element.querySelector("ul").children.length);  // Виводимо кількість елементів у категорії
+    });
+});
+
+// Завдання 8 - обробка форми логіну
+const form = document.querySelector(".login-form");
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Запобігаємо перезавантаженню сторінки при сабміті
+
+    // Перевіряємо, чи не порожні поля
+    if(form.elements.email.value.trim() === "" || form.elements.password.value.trim() === "")
+        alert("All form fields must be filled in");  // Якщо порожні, виводимо попередження
+    else {
+        const obj = {
+            email: form.elements.email.value.trim(),
+            password: form.elements.password.value.trim()
+        };
+
+        console.log(obj);  // Виводимо дані форми в консоль
+        form.reset();  // Очищаємо форму
+    }   
+});
+
+// Завдання 9 - зміна кольору фону
+function getRandomHexColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;  // Генерація випадкового кольору в HEX форматі
+}
+
+const button9 = document.querySelector(".change-color");
+
+button9.addEventListener('click', () => {
+    const color = getRandomHexColor();  // Отримуємо випадковий колір
+    document.querySelector("body").setAttribute("style", `background-color: ${color}`);  // Змінюємо колір фону
+    document.querySelector("span").textContent = color;  // Виводимо колір на сторінку
+})
+
+// Завдання 10 - створення та знищення блоків
+const buttonCreate = document.querySelector("[data-create]");
+const buttonDestroy = document.querySelector("[data-destroy]");
+
+function createBoxes(amount) {
+    const boxesContainer = document.getElementById("boxes");
+    const boxes = [];  // Массив для зберігання створених блоків
+
+    for (let i = 0; i < amount; i++) {
+        const box = document.createElement("div");  // Створюємо новий блок
+        const size = 30 + i * 10;  // Визначаємо розмір блоку (збільшується на 10px кожного разу)
+        box.style.width = `${size}px`;
+        box.style.height = `${size}px`;
+        box.style.backgroundColor = getRandomHexColor();  // Генеруємо випадковий колір для блоку
+        boxes.push(box);  // Додаємо блок до масиву
+    }
+
+    boxesContainer.append(...boxes);  // Додаємо всі блоки в контейнер
+}
+
+function destroyBoxes() {
+    const boxesContainer = document.getElementById("boxes");
+    boxesContainer.innerHTML = "";  // Очищаємо всі блоки
+}
+
+buttonCreate.addEventListener('click', () => {
+    const number = Number(document.querySelector(".task10").value);
+
+    if(number >= 1 && number <=100){  // Перевірка на валідність введеного числа
+        createBoxes(number);  // Створюємо блоки
+        document.querySelector(".task10").value = "";  // Очищаємо поле вводу
+    }
+    else {
+        alert("Please enter a number between 1 and 100.");  // Повідомлення при неправильному вводу
+    }
+});
+
+buttonDestroy.addEventListener('click', destroyBoxes);  // Видалення блоків при натисканні кнопки "Destroy"
+
+</script>
+</html>

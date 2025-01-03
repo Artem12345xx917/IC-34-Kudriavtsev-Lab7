@@ -1,0 +1,28 @@
+body{
+  font-size: larger;
+  transform: scale(1.5);
+  transform-origin: top left;
+}
+
+#place {
+  height: 130px;
+  width: 150px;
+  background-color: green;
+}
+
+#square {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+}
+
+/* Стилі для списку та кнопки */
+ul {
+  font-size: 20px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+}
